@@ -1,0 +1,146 @@
+
+/* TEXTOS */
+.title{
+  color: white;
+  letter-spacing: var(--special-letter-spacing);
+  font-size: var(--title-s);
+  font-weight: var(--bold);
+}
+.taskText{
+  font-size: var(--text-s);
+  color: var(--secondary-color);
+}
+.bottomTaskText{
+  font-size: var(--text-s);
+  color: var(--unselected-color);
+}
+.filterText{
+  font-size: var(--text-m);
+  color: var(--unselected-color);
+  font-weight: var(--bold);
+}
+.footerText{
+  font-size: var(--text-m);
+  color: var(--unselected-color);
+}
+
+
+@media  screen and (min-width: 600px) {
+  .title{ 
+    font-size: var(--title-m);
+  }
+  .taskText{
+    font-size: var(--text-l);
+  }
+  .bottomTaskText{
+    font-size: var(--text-m);
+  }
+}
+/* FINAL TEXTOS */
+
+/* INPUT */
+.formContainer{
+  width: 100%;
+}
+.input{
+  font-family: inherit;
+}
+@media  screen and (min-width: 600px) {
+  .input{
+    width: 33.75rem;
+  }
+}
+
+/*LISTA DE TAREAS*/
+.tasksContainer{
+  width: 100%;
+  box-shadow: var(--shadow)
+}
+.task{
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: none;
+}
+.task:first-child{
+  border-radius: 0.3125rem 0.3125rem 0 0;
+}
+.taskList{
+  border-radius:0 0 0.3125rem 0.3125rem;
+}
+.checkboxCircle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+.checkboxCircle::before{
+  content: '';
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 100%;
+  border: 0.0625rem solid var(--unselected-color);
+}
+
+.checkboxInput:checked + .checkboxCircle::before{
+  background-image:url(../assets/images/icon-check.svg), var(--gradient-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+.checkboxInput:checked + .checkboxCircle{
+  text-decoration: line-through;
+  color: var(--unselected-color);
+}
+.checkboxInput{
+  display: none;
+}
+
+.eliminateTaskButton{
+  border: none;
+  background-color: transparent;
+  color: var(--unselected-color);
+  font-size: var(--text-m);
+}
+/* FIN LISTA DE TAREAS */
+
+/* BOTONES */
+.button{
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+}
+.buttonSelected{
+  color: var(--selected-color);
+}
+/* FIN BOTONES */
+
+/* FILTROS */
+.filters{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media  screen and (min-width: 600px) {
+  .filters{
+    position: relative;
+    top: -4rem;
+    width: 24.375rem;
+    background-color: transparent;
+  }
+}
+/* FIN FILTROS */
+
+/* FOOTER */
+.footerText{
+  text-align: center;
+  margin: 0;
+}
+
+/* BORDER RADIUS COMPLETE */
+.borderRadius{
+  border-radius: 0.3125rem;
+}

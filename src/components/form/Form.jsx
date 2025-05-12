@@ -1,15 +1,21 @@
+import styles from './form.module.css'
+import { useState } from 'react';
 import { v4 } from 'uuid';
 
 const Form = ({ setTodoList, todoList }) => {
+  const inputClass = `${styles.task} ${styles.taskText} ${styles.input}`
+
   return (
-    <form onSubmit={event => createNewTask(event, setTodoList, todoList)}>
+    <form onSubmit={event => createNewTask(event, setTodoList, todoList)} 
+    className={styles.formContainer}>
       <input
+      className={inputClass}
         type='text'
         placeholder='Create a new task...'
         id='input'
         name='task'
       />
-      <label htmlFor='input'></label>
+      <label htmlFor='input' className={styles.taskText}></label>
     </form>
   );
 };
@@ -25,7 +31,10 @@ const createNewTask = (event, setTodoList, todoList) => {
   };
   setTodoList([...todoList, newTask]);
 
-  inputText = '';
+  //reiniciar el texto del input. Por qué no me deja cambiarlo con inputText pero si desde event.
+  inputText = ''
+  event.target.task.value = ''
+  
 };
 
 export default Form;

@@ -2,42 +2,39 @@ import { useState } from 'react';
 import Form from './components/form/Form';
 import { v4 } from 'uuid';
 import List from './components/list/List';
+import Filters from './components/filters/Filters';
 
 const App = () => {
   const [todoList, setTodoList] = useState([
     {
       id: v4(),
-      name: '',
+      name: 'Start creating a new task',
       completed: false
     }
   ]);
 
   return (
     <>
-      <header>
-        <h1>TODO</h1>
-        <img src='/assets/images/icon-sun.svg' alt='' />
+      <header className='header'>
+        <section className='headerInfo'>
+          <h1 className='title'>TODO</h1>
+          <img src='/assets/images/icon-sun.svg' alt='' />
+        </section>
       </header>
       <main>
-        <section>
+        <section className='container'>
           <Form setTodoList={setTodoList} todoList={todoList} />
 
-          <section>
+          <section className='tasksContainer taskText'>
             {todoList.map(task => {
-              <List key={task.id} task={task} />;
+              return <List key={task.id} 
+              task={task} 
+              todoList={todoList} 
+              setTodoList={setTodoList} />;
             })}
           </section>
 
-          <section>
-            <span>0 items left</span>
-            <button>Clear completed</button>
-          </section>
-
-          <section>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
-          </section>
+        <Filters todoList={todoList} setTodoList={setTodoList} />
         </section>
       </main>
     </>

@@ -1,3 +1,24 @@
+:root{
+  --text-s: 12px;
+  --text-m: 14px;
+  --text-l: 18px;
+  --title-s: 32px;
+  --title-m: 40px;
+
+  --special-letter-spacing: 15px;
+
+  --bold: 700;
+  --regular: 400;
+
+  --primary-color: #FFFFFF;
+  --secondary-color: #494C6B;
+  --unselected-color: #9495A5;
+  --selected-color: #3A7CFD;
+  --gradient-color: linear-gradient(25deg, #55DDFF, #C058F3);
+
+  --shadow: 0 2.1875rem 3.125rem -0.9375rem rgba(194, 195, 214, 0.5);
+}
+
 *,
 *::after,
 *::before {
@@ -26,5 +47,54 @@ nav ul {
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  font-style: normal;
+  font-weight: var(--regular);
+  background-color: white;
+}
+
+.header{
+  background-image: url(../assets/images/bg-mobile-light.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 12.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 20.3125rem;
+}
+@media  screen and (min-width: 600px) {
+  .header{
+    background-image: url(../assets/images/bg-desktop-light.jpg);
+    height: 18.75rem;
+  }
+  .headerInfo{
+    width: 33.8125rem;
+  }
+}
+.container{
+  position: relative;
+  top: -4.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 20.4375rem;
+  margin-inline: auto;
+}
+@media  screen and (min-width: 600px) {
+  .container{
+    width: 33.75rem;
+    top: -6.875rem;
+  }
+}
+.tasks-container{
+  width: 100%;
+  box-shadow: var(--shadow)
 }
