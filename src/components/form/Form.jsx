@@ -31,10 +31,7 @@ const createNewTask = (event, setTodoList, todoList) => {
   };
   setTodoList([...todoList, newTask]);
 
-  //reiniciar el texto del input. Por qué no me deja cambiarlo con inputText pero si desde event.
-  inputText = ''
-  event.target.task.value = ''
-  
+  event.target.reset()
 };
 
 export default Form;

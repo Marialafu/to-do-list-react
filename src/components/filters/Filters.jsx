@@ -1,6 +1,8 @@
+import { v4 } from 'uuid'
 import styles from './filters.module.css'
+import { FILTERS } from './filtersInfo' 
 
-const Filters = ({todoList, setTodoList}) => {
+const Filters = ({todoList, setTodoList, filterList, setFilterList}) => {
 
     const firstSectionClass = `${styles.task} ${styles.tasksList}`
     const firstSecctionContentClass = `${styles.bottomTaskText} ${styles.button}`
@@ -18,11 +20,17 @@ const Filters = ({todoList, setTodoList}) => {
             onClick={() => clearCompletedTasks(todoList, setTodoList)}>Clear completed</button>
           </section>
 
-          <section className={filtersContainerClass}
-          onClick={event => generateFilteredList(event, todoList, setTodoList)}>
-            <button name="all" className={filterSelectedClass}>All</button>
-            <button name="active" className={filterUnselectedClass}>Active</button>
-            <button name="completed" className={filterUnselectedClass}>Completed</button>
+          <section className={filtersContainerClass}>
+
+            {FILTERS.map( filter => {
+              return (
+              <button 
+              key={v4()}
+              onClick={() => setFilterList(filter.value)}
+            className={filterList === filter.value ? filterSelectedClass : filterUnselectedClass}>{filter.text}</button>
+
+            )})}
+
           </section>
         
         </>
@@ -35,25 +43,6 @@ const clearCompletedTasks = (todoList, setTodoList) => {
   });
   
   setTodoList(tasksList)
-};
-
-const generateFilteredList = (event, todoList, setTodoList) => {
-    let listSelected = event.target.name
-
-    if (listSelected === 'all'){
-        setTodoList(todoList)
-    } else if (listSelected === 'completed'){
-        let completedList = todoList.filter(task => task.completed)
-        //como se añade una clase
-        console.log(event.target.classList.add());
-        
-
-    } else if (listSelected === 'active'){
-        let completedList = todoList.filter(task => !task.completed)
-    }
-  
-  console.log(event.target.name);
-  
 };
 
 export default Filters

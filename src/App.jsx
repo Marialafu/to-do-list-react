@@ -13,6 +13,9 @@ const App = () => {
     }
   ]);
 
+  const [filterActive, setFilterActive] = useState('all')
+  const filteredList = generateFilteredList(filterActive, todoList)
+
   return (
     <>
       <header className='header'>
@@ -26,7 +29,7 @@ const App = () => {
           <Form setTodoList={setTodoList} todoList={todoList} />
 
           <section className='tasksContainer taskText'>
-            {todoList.map(task => {
+            {filteredList.map(task => {
               return <List key={task.id} 
               task={task} 
               todoList={todoList} 
@@ -34,11 +37,25 @@ const App = () => {
             })}
           </section>
 
-        <Filters todoList={todoList} setTodoList={setTodoList} />
+        <Filters todoList={todoList} setTodoList={setTodoList} filterList={filterActive} setFilterList={setFilterActive}/>
         </section>
       </main>
     </>
   );
+};
+
+const generateFilteredList = (filterActive, todoList) => {
+
+    if (filterActive === 2){
+      return todoList.filter(task => task.completed)
+
+    }
+    if (filterActive === 1){
+      return todoList.filter(task => !task.completed)
+    }
+
+    return todoList
+
 };
 
 export default App;

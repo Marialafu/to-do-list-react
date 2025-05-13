@@ -1,15 +1,22 @@
 import styles from './list.module.css'
 
 const List = ({ task, todoList, setTodoList}) => {
+
+  const divClass = `${styles.task} ${styles.taskItem}`
+  const inputClass = `${styles.taskText} ${styles.checkboxInput}`
+
   return (
-    <div className={styles.tasksList}>
+    <div className={divClass}>
       <input 
       type='checkbox' 
       id={task.id}
-      onClick={() => defineCheckbox(task)}
+      onChange={() => defineCheckbox(task, todoList, setTodoList)}
+      className={inputClass}
+      checked={task.completed}
        />
-      <label htmlFor={task.id}>{task.name}</label>
+      <label htmlFor={task.id} className={styles.checkboxCircle}>{task.name}</label>
       <button 
+      className={styles.eliminateTaskButton}
       onClick={() => deleteTask( task, todoList, setTodoList)}>x</button>
     </div>
   );
@@ -24,8 +31,18 @@ const deleteTask = ( eliminatedTask, todoList, setTodoList) => {
   setTodoList(taskList)
 }
 
-const defineCheckbox = (task) => {
-  task.completed = !task.completed
+const defineCheckbox = (task, todoList, setTodoList) => {
+  const taskId = task.id
+
+  const taskCompleted = todoList.map(task => {
+      if (task.id === taskId) {
+        task.completed = !task.completed
+      }
+      return task
+    });
+  
+  setTodoList(taskCompleted)
+
 }
 
 
